@@ -317,7 +317,7 @@ namespace Immersal.Samples.Navigation
 #if !(UNITY_STANDALONE)
             Handheld.Vibrate();
 #endif
-            NotificationManager.Instance.GenerateNotification("You have arrived!");
+            NotificationManager.Instance.GenerateNotification("Kamu sampai!");
             onTargetFound.Invoke(m_targetTransform);
         }
 
