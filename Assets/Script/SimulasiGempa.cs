@@ -7,6 +7,7 @@ using UnityEngine.Animations;
 
 public class SimulasiGempa : MonoBehaviour
 {
+    public GameObject gemSimCanvas;
     public TextMeshProUGUI tutorialText;
     public Button nextButton;
     public GameManager gameManager;
@@ -29,7 +30,14 @@ public class SimulasiGempa : MonoBehaviour
         tutorialText.text = tutorialSteps[step];
         nextButton.onClick.AddListener(NextStep);
     }
-
+    public void ActivateCanvas()
+    {
+        gemSimCanvas.SetActive(true);
+        step = 0;
+        tutorialText.text = tutorialSteps[step];
+        nextButton.interactable = true;
+        characterAnimator.SetTrigger("Talk");
+    }
     void NextStep()
     {
         
@@ -63,21 +71,8 @@ public class SimulasiGempa : MonoBehaviour
             {
                 nextButton.interactable = false;
                 gameManager.PlayEndVFX();
-                Destroy(gameObject);
+                gemSimCanvas.SetActive(false);
             }
         
-
-
-        //if (step < tutorialSteps.Length - 1)
-        //{
-        //    step++;
-        //    tutorialText.text = tutorialSteps[step];
-        //}
-        //else
-        //{
-        //    nextButton.interactable = false;
-        //    gameManager.PlayEndVFX();
-        //    Destroy(gameObject);
-        //}
     }
 }
