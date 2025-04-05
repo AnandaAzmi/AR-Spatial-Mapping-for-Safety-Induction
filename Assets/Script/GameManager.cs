@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public GameObject k3Canvas;
     public GameObject simKeb;
     public GameObject simKebCanvas;
+    public GameObject fireEffect;
+    public GameObject characterNPC;
 
     public PengenalanK3 pengenalanK3Script;
     public SimulasiGempa simulasiGempaScript;
@@ -18,12 +20,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gempaVFX.Stop();
+        fireEffect.SetActive(false);
 
         k3.SetActive(false);
         k3Canvas?.SetActive(false);
 
         simKeb.SetActive(false);
         simKebCanvas?.SetActive(false);
+        characterNPC?.SetActive(true);
     }
     public void PlayEndVFX()
     {
@@ -35,6 +39,7 @@ public class GameManager : MonoBehaviour
     }
     public void OnSimGemButtonClicked()
     {
+        characterNPC?.SetActive(true);
         simulasiGempa?.SetActive(true);
 
         if (simulasiGempaScript != null)
@@ -44,24 +49,36 @@ public class GameManager : MonoBehaviour
 
         simKeb?.SetActive(false);
         simKebCanvas?.SetActive(false);
+        fireEffect?.SetActive(false);
 
         k3?.SetActive(false);
         k3Canvas?.SetActive(false);
     }
     public void OnSimKebButtonClicked()
     {
+
+        characterNPC?.SetActive(false);
         simKeb?.SetActive(true);
         simKebCanvas?.SetActive(true);
-
+        fireEffect?.SetActive(true);
         simulasiGempa?.SetActive(false);
-        
+
+        //GameObject[] fireObjects = GameObject.FindGameObjectsWithTag("Fire");
+        //foreach (GameObject fire in fireObjects)
+        //{
+        //    fire.SetActive(true);
+        //}
+
         k3?.SetActive(false);
         k3Canvas?.SetActive(false);
     }
     public void OnK3ButtonClicked()
     {
+        characterNPC?.SetActive(true);
         k3?.SetActive(true);
         k3Canvas?.SetActive(true);
+
+        fireEffect?.SetActive(false);
 
         if (pengenalanK3Script != null)
         {
@@ -71,5 +88,6 @@ public class GameManager : MonoBehaviour
         
         simKeb?.SetActive(false);
         simKebCanvas?.SetActive(false);
+
     }
 }

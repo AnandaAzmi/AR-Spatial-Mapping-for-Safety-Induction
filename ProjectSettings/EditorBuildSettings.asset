@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Gedung AA1.1.unity
     guid: 8bd2282b7e4ed254aacf5ac6577b1121
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gedung AA1.2.unity
     guid: f467cb62d062e454ea7997a5485ec8ea
+  - enabled: 1
+    path: Assets/Scenes/Gedung AA_Final Scene.unity
+    guid: f7d17cde755e9874dba264c5fe76b827
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 3ab2c149aa320b240bd931fd4af1115c, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: ca4560ee119c2914a8dfba495255b07e, type: 2}
