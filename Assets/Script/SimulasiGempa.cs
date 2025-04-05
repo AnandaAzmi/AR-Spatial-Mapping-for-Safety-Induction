@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class SimulasiGempa : MonoBehaviour
 {
     public TextMeshProUGUI tutorialText;
     public Button nextButton;
     public GameManager gameManager;
+    public Animator characterAnimator;
 
     private string[] tutorialSteps = new string[]
     {
@@ -30,16 +32,52 @@ public class SimulasiGempa : MonoBehaviour
 
     void NextStep()
     {
-        if (step < tutorialSteps.Length - 1)
-        {
-            step++;
-            tutorialText.text = tutorialSteps[step];
-        }
-        else
-        {
-            nextButton.interactable = false;
-            gameManager.PlayEndVFX();
-            Destroy(gameObject);
-        }
+        
+            if (step < tutorialSteps.Length - 1)
+            {
+                step++;
+                tutorialText.text = tutorialSteps[step];
+
+                // Debug trigger animasi
+                switch (step)
+                {
+                    case 1:
+                        Debug.Log("Trigger: Point");
+                        characterAnimator.SetTrigger("Point");
+                        break;
+                    case 2:
+                        Debug.Log("Trigger: Talk");
+                        characterAnimator.SetTrigger("Talk");
+                        break;
+                    case 3:
+                        Debug.Log("Trigger: Idle");
+                        characterAnimator.SetTrigger("Idle");
+                        break;
+                    case 4:
+                        Debug.Log("Trigger: Excited");
+                        characterAnimator.SetTrigger("Excited");
+                        break;
+                }
+            }
+            else
+            {
+                nextButton.interactable = false;
+                gameManager.PlayEndVFX();
+                Destroy(gameObject);
+            }
+        
+
+
+        //if (step < tutorialSteps.Length - 1)
+        //{
+        //    step++;
+        //    tutorialText.text = tutorialSteps[step];
+        //}
+        //else
+        //{
+        //    nextButton.interactable = false;
+        //    gameManager.PlayEndVFX();
+        //    Destroy(gameObject);
+        //}
     }
 }
