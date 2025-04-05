@@ -63,11 +63,7 @@ public class GameManager : MonoBehaviour
         fireEffect?.SetActive(true);
         simulasiGempa?.SetActive(false);
 
-        //GameObject[] fireObjects = GameObject.FindGameObjectsWithTag("Fire");
-        //foreach (GameObject fire in fireObjects)
-        //{
-        //    fire.SetActive(true);
-        //}
+        gempaVFX.Stop();
 
         k3?.SetActive(false);
         k3Canvas?.SetActive(false);
@@ -85,7 +81,9 @@ public class GameManager : MonoBehaviour
             pengenalanK3Script.ActivateCanvas();
         }
         simulasiGempa?.SetActive(false);
-        
+
+        gempaVFX.Stop();
+
         simKeb?.SetActive(false);
         simKebCanvas?.SetActive(false);
 
