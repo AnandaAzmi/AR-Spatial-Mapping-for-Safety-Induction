@@ -36,7 +36,7 @@ public class SimulasiGempa : MonoBehaviour
         step = 0;
         tutorialText.text = tutorialSteps[step];
         nextButton.interactable = true;
-        characterAnimator.SetTrigger("Talk");
+        characterAnimator.SetTrigger("GM1");
     }
     void NextStep()
     {
@@ -50,22 +50,22 @@ public class SimulasiGempa : MonoBehaviour
                 switch (step)
                 {
                     case 1:
-                        Debug.Log("Trigger: Point");
-                        characterAnimator.SetTrigger("Point");
+                        Debug.Log("Trigger: GM3");
+                        characterAnimator.SetTrigger("GM3");
                         break;
                     case 2:
-                        Debug.Log("Trigger: Talk");
-                        characterAnimator.SetTrigger("Talk");
+                        Debug.Log("Trigger: GM4");
+                        characterAnimator.SetTrigger("GM4");
                         break;
                     case 3:
-                        Debug.Log("Trigger: Idle");
-                        characterAnimator.SetTrigger("Idle");
+                        Debug.Log("Trigger: GM5");
+                        characterAnimator.SetTrigger("GM5");
                         break;
                     case 4:
-                        Debug.Log("Trigger: Excited");
-                        characterAnimator.SetTrigger("Excited");
+                        Debug.Log("Trigger: GM6");
+                        characterAnimator.SetTrigger("GM6");
                         break;
-                }
+            }
             }
             else
             {

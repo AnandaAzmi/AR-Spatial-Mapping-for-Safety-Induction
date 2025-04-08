@@ -70,22 +70,19 @@ public class GameManager : MonoBehaviour
     }
     public void OnK3ButtonClicked()
     {
+        simulasiGempa?.SetActive(false);
+        gempaVFX.Stop();
+        simKeb?.SetActive(false);
+        simKebCanvas?.SetActive(false);
+        fireEffect?.SetActive(false);
         characterNPC?.SetActive(true);
         k3?.SetActive(true);
         k3Canvas?.SetActive(true);
-
-        fireEffect?.SetActive(false);
 
         if (pengenalanK3Script != null)
         {
             pengenalanK3Script.ActivateCanvas();
         }
-        simulasiGempa?.SetActive(false);
-
-        gempaVFX.Stop();
-
-        simKeb?.SetActive(false);
-        simKebCanvas?.SetActive(false);
-
+        
     }
 }
