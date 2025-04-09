@@ -13,6 +13,9 @@ public class SimulasiGempa : MonoBehaviour
     public GameManager gameManager;
     public Animator characterAnimator;
 
+    public AudioSource audioSource;
+    public AudioClip[] dubbingClips;
+
     private string[] tutorialSteps = new string[]
     {
         "Halo! Nama saya Blazey, pemandu keselamatanmu hari ini. Kita akan belajar bagaimana melakukan evakuasi dengan aman dan cepat! Siap memulai?",
@@ -29,12 +32,15 @@ public class SimulasiGempa : MonoBehaviour
     {
         tutorialText.text = tutorialSteps[step];
         nextButton.onClick.AddListener(NextStep);
+        PlayDubbing(step);
     }
     public void ActivateCanvas()
     {
         gemSimCanvas.SetActive(true);
         step = 0;
         tutorialText.text = tutorialSteps[step];
+        PlayDubbing(step);
+
         nextButton.interactable = true;
         characterAnimator.SetTrigger("GM1");
     }
@@ -45,9 +51,10 @@ public class SimulasiGempa : MonoBehaviour
             {
                 step++;
                 tutorialText.text = tutorialSteps[step];
+                PlayDubbing(step);
 
-                // Debug trigger animasi
-                switch (step)
+            // Debug trigger animasi
+            switch (step)
                 {
                     case 1:
                         Debug.Log("Trigger: GM3");
@@ -74,5 +81,20 @@ public class SimulasiGempa : MonoBehaviour
                 gemSimCanvas.SetActive(false);
             }
         
+    }
+    void PlayDubbing(int index)
+    {
+        Debug.Log("Playing dubbing step: " + index);
+
+        if (dubbingClips != null && index < dubbingClips.Length && dubbingClips[index] != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = dubbingClips[index];
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Audio clip missing or null at index: " + index);
+        }
     }
 }

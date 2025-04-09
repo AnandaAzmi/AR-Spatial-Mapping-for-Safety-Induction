@@ -11,6 +11,10 @@ public class PengenalanK3 : MonoBehaviour
     public Button nextButton;
     public Animator characterAnimator;
 
+    public AudioSource audioSource;
+    public AudioClip[] dubbingClips;
+
+
     private string[] tutorialSteps = new string[]
     {
         "Di depanmu sudah ada peralatan keselamatan yang harus kamu ketahui! Ikuti baik baik ya..",
@@ -49,6 +53,7 @@ public class PengenalanK3 : MonoBehaviour
 
         step = 0;
         tutorialText.text = tutorialSteps[step];
+        PlayDubbing(step);
         nextButton.interactable = true;
         characterAnimator.SetTrigger("Talk"); // Animasi pertama dijalankan langsung
     }
@@ -59,6 +64,7 @@ public class PengenalanK3 : MonoBehaviour
         {
             step++;
             tutorialText.text = tutorialSteps[step];
+            PlayDubbing(step);
 
             switch (step)
             {
@@ -78,12 +84,36 @@ public class PengenalanK3 : MonoBehaviour
                     Debug.Log("Trigger: Excited");
                     characterAnimator.SetTrigger("Excited");
                     break;
+                case 5:
+                    characterAnimator.SetTrigger("Talk");
+                    break;
+                case 6:
+                    characterAnimator.SetTrigger("Point");
+                    break;
+                case 7:
+                    characterAnimator.SetTrigger("Talk");
+                    break;
             }
         }
         else
         {
             nextButton.interactable = false;
             tutorialCanvas.gameObject.SetActive(false);
+        }
+    }
+    void PlayDubbing(int index)
+    {
+        Debug.Log("Play dubbing for step: " + index);
+
+        if (dubbingClips != null && index < dubbingClips.Length && dubbingClips[index] != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = dubbingClips[index];
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Dubbing clip missing at step: " + index);
         }
     }
 }
