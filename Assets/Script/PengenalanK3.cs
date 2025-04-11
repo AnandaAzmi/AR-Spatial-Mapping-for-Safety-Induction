@@ -62,7 +62,7 @@ public class PengenalanK3 : MonoBehaviour
         tutorialText.text = tutorialSteps[step];
         PlayDubbing(step);
         nextButton.interactable = true;
-        characterAnimator.SetTrigger("Talk"); // Animasi pertama dijalankan langsung
+        characterAnimator.SetTrigger("PA1"); // Animasi pertama dijalankan langsung
 
         aparObject?.SetActive(true);
         helmObject?.SetActive(true);
@@ -80,29 +80,29 @@ public class PengenalanK3 : MonoBehaviour
             switch (step)
             {
                 case 1:
-                    Debug.Log("Trigger: Point");
-                    characterAnimator.SetTrigger("Point");
+                    Debug.Log("Trigger: PA4");
+                    characterAnimator.SetTrigger("PA4");
                     break;
                 case 2:
-                    Debug.Log("Trigger: Talk");
-                    characterAnimator.SetTrigger("Talk");
+                    Debug.Log("Trigger: PA3");
+                    characterAnimator.SetTrigger("PA3");
                     break;
                 case 3:
-                    Debug.Log("Trigger: Idle");
-                    characterAnimator.SetTrigger("Idle");
+                    Debug.Log("Trigger: PA4");
+                    characterAnimator.SetTrigger("PA4");
                     break;
                 case 4:
-                    Debug.Log("Trigger: Excited");
-                    characterAnimator.SetTrigger("Excited");
+                    Debug.Log("Trigger: PA5");
+                    characterAnimator.SetTrigger("PA5");
                     break;
                 case 5:
-                    characterAnimator.SetTrigger("Talk");
+                    characterAnimator.SetTrigger("PA6");
                     break;
                 case 6:
-                    characterAnimator.SetTrigger("Point");
+                    characterAnimator.SetTrigger("PA7");
                     break;
                 case 7:
-                    characterAnimator.SetTrigger("Talk");
+                    characterAnimator.SetTrigger("PA8");
                     break;
             }
 
