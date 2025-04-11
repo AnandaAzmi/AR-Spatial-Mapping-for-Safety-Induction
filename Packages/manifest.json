@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.blendernodesgraph.core": "https://github.com/Warwlock/blender-nodes-subgraph.git",
     "com.immersal.core": "https://github.com/immersal/imdk-unity.git",
     "com.unity.cloud.gltfast": "6.10.3",
     "com.unity.collab-proxy": "2.7.1",
