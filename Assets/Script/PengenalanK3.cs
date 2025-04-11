@@ -14,17 +14,21 @@ public class PengenalanK3 : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] dubbingClips;
 
+    public GameObject aparObject;
+    public GameObject helmObject;
+    public GameObject maskerObject;
+
 
     private string[] tutorialSteps = new string[]
     {
         "Di depanmu sudah ada peralatan keselamatan yang harus kamu ketahui! Ikuti baik baik ya..",
-        "Lihatlah benda yang warna merah itu !!",
+        "Lihatlah benda yang warna merah itu !!",//di bagian ini hanya munculkan objek APAR
         "Ini adalah APAR (Alat Pemadam Api Ringan)." +
         "Jika terjadi kebakaran kecil, gunakan APAR dengan teknik T.A.T.S.",
         "Tarik pin, Arahkan ke api, Tekan tuas, dan Semprotkan secara menyapu.",
-        "Apa kau lihat ada helm??",
+        "Apa kau lihat ada helm??",//disini munculkan objek helm, disable objek lain
         "Ini helm pengaman K3, digunakan untuk melindungi kepala dari benda jatuh atau benturan.",
-        "Ada satu lagi, kamu melihat sesuatu yang berbentuk seperti topeng??",
+        "Ada satu lagi, kamu melihat sesuatu yang berbentuk seperti topeng??",//disini munculkan masker, disable objek lainnya
         "Saat ada asap tebal atau udara tercemar, gunakan masker pernapasan ini untuk melindungi saluran pernapasanmu. " +
         "Pastikan masker terpasang erat dan bernapas melalui filter yang tersedia.",
     };
@@ -41,6 +45,9 @@ public class PengenalanK3 : MonoBehaviour
 
         // Tambahkan listener untuk tombol
         nextButton.onClick.AddListener(NextStep);
+        aparObject?.SetActive(false);
+        helmObject?.SetActive(false);
+        maskerObject?.SetActive(false);
     }
 
     // Fungsi ini bisa dipanggil dari GameManager atau trigger lain
@@ -56,6 +63,10 @@ public class PengenalanK3 : MonoBehaviour
         PlayDubbing(step);
         nextButton.interactable = true;
         characterAnimator.SetTrigger("Talk"); // Animasi pertama dijalankan langsung
+
+        aparObject?.SetActive(true);
+        helmObject?.SetActive(true);
+        maskerObject?.SetActive(true);
     }
 
     void NextStep()
@@ -94,11 +105,35 @@ public class PengenalanK3 : MonoBehaviour
                     characterAnimator.SetTrigger("Talk");
                     break;
             }
+
+            switch (step)
+            {
+                case 1: // Munculkan APAR
+                    aparObject?.SetActive(true);
+                    helmObject?.SetActive(false);
+                    maskerObject?.SetActive(false);
+                    break;
+
+                case 4: // Munculkan Helm
+                    aparObject?.SetActive(false);
+                    helmObject?.SetActive(true);
+                    maskerObject?.SetActive(false);
+                    break;
+
+                case 6: // Munculkan Masker
+                    aparObject?.SetActive(false);
+                    helmObject?.SetActive(false);
+                    maskerObject?.SetActive(true);
+                    break;
+            }
         }
         else
         {
             nextButton.interactable = false;
             tutorialCanvas.gameObject.SetActive(false);
+            aparObject?.SetActive(false);
+            helmObject?.SetActive(false);
+            maskerObject?.SetActive(false);
         }
     }
     void PlayDubbing(int index)
