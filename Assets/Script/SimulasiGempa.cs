@@ -30,9 +30,9 @@ public class SimulasiGempa : MonoBehaviour
 
     void Start()
     {
-        tutorialText.text = tutorialSteps[step];
-        nextButton.onClick.AddListener(NextStep);
-        PlayDubbing(step);
+        //tutorialText.text = tutorialSteps[step];
+        //nextButton.onClick.AddListener(NextStep);
+        //PlayDubbing(step);
     }
     public void ActivateCanvas()
     {
@@ -44,7 +44,7 @@ public class SimulasiGempa : MonoBehaviour
         nextButton.interactable = true;
         characterAnimator.SetTrigger("GM1");
     }
-    void NextStep()
+    public void NextStep()
     {
         
             if (step < tutorialSteps.Length - 1)

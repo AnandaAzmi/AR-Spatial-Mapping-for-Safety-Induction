@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
         simKeb.SetActive(false);
         simKebCanvas?.SetActive(false);
-        characterNPC?.SetActive(true);
+        characterNPC?.SetActive(false);
     }
     public void PlayEndVFX()
     {
