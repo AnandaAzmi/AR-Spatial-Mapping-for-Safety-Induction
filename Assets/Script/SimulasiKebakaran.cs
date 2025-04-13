@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class SimulasiKebakaran : MonoBehaviour
 {
-    public Button[] buttons;                  // Urutan tombol yang harus diklik
-    public ParticleSystem particleEffect;     // Efek partikel yang akan dinyalakan
+    public Button[] buttons;                      // Tombol-tombol
+    public Animator animator;                     // Hanya satu Animator
+    public string[] animationTriggers;            // Nama trigger animasi: "Play1", "Play2", "Play3"
+    public AudioSource[] sfxSources;              // SFX per langkah
+    public ParticleSystem particleEffect;         // Efek akhir
 
-    private int currentIndex = 0;             // Indeks tombol yang sedang ditunggu
+    private int currentIndex = 0;
 
     void Start()
     {
-        // Tambahkan listener untuk setiap tombol
         for (int i = 0; i < buttons.Length; i++)
         {
-            int index = i; // capture index
+            int index = i;
             buttons[i].onClick.AddListener(() => OnButtonClicked(index));
         }
 
-        // Pastikan efek partikel mati saat mulai
         if (particleEffect != null)
         {
             particleEffect.Stop();
@@ -28,12 +30,23 @@ public class SimulasiKebakaran : MonoBehaviour
 
     void OnButtonClicked(int clickedIndex)
     {
-        // Jika tombol yang diklik sesuai urutan
         if (clickedIndex == currentIndex)
         {
+            // Mainkan animasi berdasarkan trigger sesuai urutan
+            if (animator != null && currentIndex < animationTriggers.Length)
+            {
+                animator.SetTrigger(animationTriggers[currentIndex]);
+            }
+
+            // Mainkan SFX
+            if (sfxSources != null && currentIndex < sfxSources.Length && sfxSources[currentIndex] != null)
+            {
+                sfxSources[currentIndex].Play();
+            }
+
             currentIndex++;
 
-            // Jika semua tombol sudah diklik dengan urutan benar
+            // Semua tombol berhasil diklik dengan urutan benar
             if (currentIndex >= buttons.Length)
             {
                 if (particleEffect != null)
@@ -41,14 +54,13 @@ public class SimulasiKebakaran : MonoBehaviour
                     particleEffect.Play();
                 }
 
-                Debug.Log("Urutan benar! Efek partikel dinyalakan.");
-                currentIndex = 0; // Reset kalau ingin bisa dimainkan ulang
+                Debug.Log("Semua urutan benar! Efek partikel aktif.");
+                currentIndex = 0;
             }
         }
         else
         {
-            // Salah urutan -> reset
-            Debug.Log("Urutan salah! Reset.");
+            Debug.Log("Salah urutan! Reset.");
             currentIndex = 0;
 
             if (particleEffect != null)
